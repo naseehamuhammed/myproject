@@ -3,13 +3,14 @@
 import requests
 from django.utils import timezone
 from .models import SocialMediaPost
-
+from django.conf import settings
 def fetch_facebook_data():
     # Example function for Facebook API
+    access_token = getattr(settings, 'FACEBOOK_ACCESS_TOKEN', None)
   
     url = 'https://graph.facebook.com/me/posts'
     params = {
-        'access_token': 'EAAG76gZB8XyUBO6GfhjSZBrDiGp6zlNlLcDDRM8VY76Lz57ZBZC1vkSBk5oY4tuwkLq1jQYfboyHbbBuVXEZBOLShYK2g7ZC25Umwa8ZBgvZBUeALdifl38V4Xq6YAlNXOaT17BDPkJg0OunbBVukPnZB5ZApF7BAurN05KlKVjrCdUHNymmlPjQSwVwyT8nhqj0qM1RlWYJ3p0ZBTZBNwkaHDN8BTRS',
+        'access_token': 'access_token',
         'fields': 'id,message,created_time,likes.summary(true),comments.summary(true)',
     }
     response = requests.get(url, params=params)
