@@ -1,0 +1,127 @@
+<!-- analytics/templates/analytics/dashboard.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Social Media Dashboard</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <style>
+        .sidebar {
+            height: 100vh;
+            background-color: #343a40;
+            color: #fff;
+        }
+        .sidebar a {
+            color: #adb5bd;
+            text-decoration: none;
+        }
+        .sidebar a:hover {
+            color: #fff;
+            background-color: #495057;
+        }
+        .content {
+            padding: 20px;
+        }
+        .card-body {
+            display: flex;
+            align-items: center;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <nav class="col-md-2 sidebar">
+                <div class="sidebar-sticky">
+                    <h4 class="text-center mt-3">Dashboard</h4>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="fas fa-home"></i> Home
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="fas fa-user"></i> Profile
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="fas fa-envelope"></i> Messages
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="fas fa-bell"></i> Notifications
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="fas fa-cog"></i> Settings
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+        <!-- Header -->
+       
+        <main role="main" class="col-md-10 ml-sm-auto px-4 content">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">Social Media Dashboard</h1>
+            </div>
+            <div class="container">
+                
+                {% block content %}
+                
+               {%endblock%}
+</main>
+</div>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+       // Example data from posts
+       const postData = [
+
+           { title: "Instagram", views: 3},
+           { title: "Facebook", views: 4 }
+           
+       ];
+   
+       // Extract labels and data from the postData
+       const labels = postData.map(post => post.title);
+       const data = postData.map(post => post.views);
+   
+       // Create a Chart.js chart
+       const ctx = document.getElementById('myChart').getContext('2d');
+       const myChart = new Chart(ctx, {
+           type: 'bar', // You can also use 'line', 'pie', etc.
+           data: {
+               labels: labels,
+               datasets: [{
+                   label: 'Post Count',
+                   data: data,
+                   backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                   borderColor: 'rgba(75, 192, 192, 1)',
+                   borderWidth: 1
+               }]
+           },
+           options: {
+               scales: {
+                   y: {
+                       beginAtZero: true
+                   }
+               }
+           }
+       });
+   });
+</script>
+</body>
+</html>

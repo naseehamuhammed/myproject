@@ -1,0 +1,80 @@
+
+ {% extends 'analytics/base.html' %}
+ 
+ {% block content %}
+ 
+            <div class="container">
+                <h2 class="mb-4">Facebook Posts</h2>
+                <table class="table table-striped table-bordered">
+                    <thead class="thead-dark">
+    
+            <tr>
+                <th>Platform</th>
+                <th>Post ID</th>
+                <th>Content</th>
+                <th>Likes</th>
+                <th>Shares</th>
+                <th>Comments</th>
+                <th>Timestamp</th>
+            </tr>
+        </thead>
+        <tbody id="postsTable">
+            {% for post in posts %}
+            <tr>
+                <td>{{ post.platform }}</td>
+                <td>{{ post.post_id }}</td>
+                <td>{{ post.content }}</td>
+                <td>{{ post.likes }}</td>
+                <td>{{ post.shares }}</td>
+                <td>{{ post.comments }}</td>
+                <td>{{ post.timestamp }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<h2 class="mb-4">Instagram Posts</h2>
+
+<!-- Display Error Messages if any -->
+{% if error %}
+    <div class="alert alert-danger">{{ error }}</div>
+{% endif %}
+
+<!-- Display the posts -->
+{% if insta_posts %}
+    <div class="row">
+        {% for post in insta_posts %}
+            <div class="col-md-4">
+                <div class="card">
+                    <!-- Display media type and content -->
+                    {% if post.media_type == "IMAGE" %}
+                        <img src="{{ post.media_url }}" class="card-img-top" alt="Instagram Image">
+                    {% elif post.media_type == "VIDEO" %}
+                        <video controls class="card-img-top">
+                            <source src="{{ post.media_url }}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    {% elif post.media_type == "CAROUSEL_ALBUM" %}
+                        <img src="{{ post.media_url }}" class="card-img-top" alt="Instagram Carousel Image">
+                    {% endif %}
+                    
+                    <div class="card-body">
+                        <h5 class="card-title">Post ID: {{ post.id }}</h5>
+                        <p class="card-text">{{ post.caption }}</p>
+                        <p class="card-text">
+                            <small class="text-muted">Posted on: {{ post.timestamp|date:"d M Y, H:i" }}</small>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <p>No Instagram posts available.</p>
+{% endif %}
+</div>
+<div style="width: 80%; margin: 0 auto;"></div>
+    <canvas id="myChart"></canvas>
+</div>
+{%endblock%}

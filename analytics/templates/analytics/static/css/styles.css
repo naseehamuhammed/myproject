@@ -1,0 +1,31 @@
+/* Basic Reset */
+body, h1, table {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+    font-family: Arial, sans-serif;
+}
+
+/* Header Styling */
+header {
+    background-color: #007bff;
+    color: white;
+}
+
+header h1 {
+    margin-bottom: 0;
+}
+
+/* Filter Styling */
+.form-group select {
+    max-width: 200px;
+}
+
+/* Main Content Styling */
+table {
+    margin-top: 20px;
+}
